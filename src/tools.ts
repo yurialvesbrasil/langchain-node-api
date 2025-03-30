@@ -7,11 +7,9 @@ export const tools = [
     func: async (query) => {
       try {
         const API_KEY = process.env.NEWS_API_KEY;
-        const content = encodeURIComponent(query);
-        const response = await fetch(`https://newsapi.org/v2/everything?q=${content}&apiKey=${API_KEY}`);
+        const response = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&apiKey=${API_KEY}`);
         const data = await response.json();
         const articles = data.articles?.slice(0, 3);
-        console.log(articles);
         return JSON.stringify(articles);
       } catch (error) {
         return `Error fetching news: ${error}`;

@@ -5,7 +5,6 @@ import express from "express";
 import { HumanMessage } from '@langchain/core/messages';
 import { agent } from "./agent";
 
-
 async function main() {
   const app = express();
   app.use(express.json());
