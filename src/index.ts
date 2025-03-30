@@ -2,15 +2,13 @@ import { config } from "dotenv";
 config();
 
 import express from "express";
-import OpenAI from "openai";
+import { HumanMessage } from '@langchain/core/messages';
+import { agent } from "./agent";
+
 
 async function main() {
   const app = express();
   app.use(express.json());
-
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
 
   app.get("/", (req, res) => {
     res.send("Hello World!");
@@ -22,17 +20,15 @@ async function main() {
       res.status(400).json({ error: "Message are required" });
     }
     try {
-      const responseOAI = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "user",
-            content: message,
-          }
-        ],
-        store: true,
+      const agentFinalState = await agent.invoke({
+        messages: [new HumanMessage(message)],
+      }, {
+        configurable: {
+          thread_id: "42",
+        }
       });
-      res.json(responseOAI.choices[0].message);
+      const content = agentFinalState.messages[agentFinalState.messages.length - 1].content;
+      res.json(content);
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({ error: "Internal Server Error" });
