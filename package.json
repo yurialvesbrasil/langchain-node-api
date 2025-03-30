@@ -3,10 +3,21 @@
   "version": "1.0.0",
   "description": "This is an example of an integration using LangChain, OpenAI, Express, and TypeScript.",
   "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=22.14.0",
+    "pnpm": ">=10.7.0"
+  },
+  "packageManager": "pnpm@10.7.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "Daniel Castro",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
 }
