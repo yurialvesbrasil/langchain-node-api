@@ -21,7 +21,7 @@ export const tools = [
     description: "Tell me a joke",
     func: async (query) => {
       try {
-        const response = await fetch("https://official-joke-api.appspot.com/random_joke");
+        const response = await fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=political,racist,sexist&type=single");
         const data = await response.json();
         return `${data.setup} - ${data.punchline}`;
       } catch (error) {
