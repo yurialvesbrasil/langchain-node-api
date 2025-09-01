@@ -112,8 +112,8 @@ pnpm start
 
 O agente possui as seguintes ferramentas integradas:
 
-- **SearchNews**: Busca notícias recentes via NewsAPI
-- **TellMeJokes**: Conta piadas via JokeAPI
+- **SearchNews**: Busca notícias recentes via NewsAPI (https://newsapi.org/)
+- **TellMeJokes**: Conta piadas via JokeAPI (https://sv443.net/jokeapi/v2/)
 
 ## 🚀 Executando o Projeto
 
